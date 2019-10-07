@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Lost&Find</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <!-- <link href="album.css" rel="stylesheet"> dont know what this does-->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+  </head>
+  <body>
+    <header>
+  <div class="navbar navbar-light bg-warning shadow-sm">
+    <div class="container justify-content-between" style='display:-webkit-box'>
+      <a href="{{ url_for('home') }}" class="navbar-brand d-flex align-items-center">
+        <i class='fab fa-bandcamp' style='font-size:30px'></i>
+
+        <em style="padding-left:10px">Lost&Find</em>
+      </a>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('new_post') }}"><button type="button" class="btn btn-outline-dark">New Post</button></a>
+        <a href="{{ url_for('account') }}"><button type="button" class="btn btn-outline-dark">Account</button></a>  
+        <a href="{{ url_for('logout') }}"><button type="button" class="btn btn-outline-dark">Logout</button></a>  
+      {% else %}
+        <a href="{{ url_for('register') }}"><button type="button" class="btn btn-outline-dark">Sign Up</button></a>
+        <a href="{{ url_for('login') }}"><button type="button" class="btn btn-outline-dark">Login</button></a>  
+      {% endif %}
+
+
+    </div>
+  </div>
+</header>
+
+<main role="main">
+{%block content%}{%endblock content%}
+</main>
+
+
+<!--these 3 scripts below are required for javascript to work. have on all pages-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</html>

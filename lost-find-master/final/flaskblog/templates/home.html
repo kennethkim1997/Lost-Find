@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block content %}
+<main role="main">
+    <section class="jumbotron text-center background-color:transparent !important;>
+      <div class="container">
+        <h1 class="jumbotron-heading">Welcome to Lost&Find.</h1>
+        <p class="lead text-muted">You lose it, we find it.</p>
+        
+        <div class="container">
+              <div class="row">
+                <div class="col">
+                </div>
+                <div class="col-8">
+                      <form>
+                          <div class="form-group">
+                              <input type="search" class="form-control " id="exampleFormControlInput1" placeholder="Search">
+                          </div>
+                      </form>
+                </div>
+              <p>
+                  <a href="{{ url_for('login') }}" class="btn btn-warning">Search</a>
+              </p>
+                <div class="col">
+                </div>
+              </div>
+      </div>
+    </section>
+    
+    <div class="album py-5 bg-dark rounded">
+      <div class="container">
+            <div class="row">
+            {% for post in posts.items %}
+            <div class="col-md-4 col-sm-6">
+                <div class="card border-dark mb-4 shadow rounded">
+                <img src="{{ url_for('static', filename='profile_pics/' + post.image_file1) }}">
+                <div class="card-body bg-warning rounded">
+                    <a href="http://59934beb.ngrok.io/"><i class="far fa-envelope text-dark" style='float:right;font-size:30px'></i></a>
+                    <p class="card-text"><b>{{ post.content }}</b></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-light btn-outline" data-toggle="modal" data-target="#exampleModal">Accept</button>
+                        <button type="button" class="btn btn-dark btn-outline" data-toggle="modal" data-target="#exampleModal">View</button>
+                    </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ post.author.username }}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="{{ url_for('static', filename='profile_pics/' + post.image_file1) }}">
+                                    <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"/><text fill="#eceeef" dy=".3em" x="50%" y="50%">Thumbnail</text></svg>-->
+                                        <div>
+                                            <b>Reward:</b> 
+                                            <p style="display:inline">{{ post.location }}</p>
+                                            <br>
+                                            <b>Location: $</b> 
+                                            <p style="display:inline">{{ post.reward }}</p>
+                                            <p>{{ post.content }}</p>
+
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary">Hide</button>
+                                <button type="button" class="btn btn-primary">Save</button>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                        <div class="d-none d-sm-block">
+                        <small class="text-dark"><a class="mr-2" href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a></small>
+                        <small class="text-dark">
+                    </div>
+                        <em>{{ post.date_posted.strftime('%Y-%m-%d') }}</em></small>                
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </main>
+  {% endblock content %}
